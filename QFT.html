@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>量子傅里叶变换 &mdash; pyQPanda  文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" type="text/javascript" src="https://assets.readthedocs.org/static/javascript/readthedocs-doc-embed.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="量子相位估计" href="QPE.html" />
+    <link rel="prev" title="振幅放大" href="AmplitudeAmplification.html" /> 
+
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="https://assets.readthedocs.org/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2021-12-01T02:19:37Z", "builder": "sphinx", "canonical_url": null, "commit": "352347c2", "docroot": "/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "zh", "page": "QFT", "programming_language": "cpp", "project": "pyqpanda-toturial", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="https://assets.readthedocs.org/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyQPanda
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">基础介绍</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">系统配置和安装</a></li>
+</ul>
+<p class="caption"><span class="caption-text">深入学习</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="QGate.html">量子逻辑门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QCircuit.html">量子线路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QWhile.html">QWhile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QIf.html">QIf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QProg.html">量子程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuantumMachine.html">量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QubitPool.html">量子比特池</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Measure.html">量子测量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PMeasure.html">概率测量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QCloudServer.html">本源量子云服务</a></li>
+</ul>
+<p class="caption"><span class="caption-text">量子程序信息</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="NodeIter.html">NodeIter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QGateCounter.html">逻辑门统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QProgClockCycle.html">统计量子程序时钟周期</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QCircuitInfo.html">获取量子线路对应矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QCircuitInfo.html#id3">判断量子逻辑门是否匹配量子拓扑结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QCircuitInfo.html#id5">获得指定位置的量子逻辑门的相邻量子逻辑门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QCircuitInfo.html#id7">判断两个量子逻辑门是否可交换位置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QCircuitInfo.html#id9">判断逻辑门是否属于量子芯片支持的量子逻辑门集合</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DrawQProg.html">量子线路字符画</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuantumVolume.html">量子体积</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RandomizedBenchmarking.html">随机基准</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CrossEntropyBenchmarking.html">交叉熵基准</a></li>
+</ul>
+<p class="caption"><span class="caption-text">编译量子程序</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="QProgToQASM.html">量子程序转化QASM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QASMToQProg.html">QASM转化为量子程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QProgToQuil.html">量子程序转化为Quil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QProgStored.html">量子程序序列化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QProgDataParse.html">解析量子程序二进制文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OriginIRToQProg.html">OriginIR转化为量子程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QProgToOriginIR.html">量子程序转化OriginIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OriginIRToQProg.html">OriginIR转化为量子程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QCodarMatch.html">量子程序匹配拓扑结构</a></li>
+</ul>
+<p class="caption"><span class="caption-text">实用工具</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="GraphMatch.html">量子线路查询替换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FillQProgByI.html">用I门填充QProg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MatrixDecompostion.html">酉矩阵分解</a></li>
+</ul>
+<p class="caption"><span class="caption-text">组件</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="PauliOperator.html">泡利算符类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FermionOperator.html">费米子算符类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Optimizer.html">优化算法(直接搜索法)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">VQC</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Var.html">变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VarOperator.html">运算符</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VQG.html">可变量子逻辑门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VQC.html">可变量子逻辑门(VQG)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GradientOptimizer.html">优化算法(梯度下降法)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VQNetExample.html">综合示例</a></li>
+</ul>
+<p class="caption"><span class="caption-text">量子算法基础</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="QubitAndQGate.html">基础概念回顾</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QPreparation.html">试验态制备与量子纠缠</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HadamardAndSWAP.html">Hadamard Test与SWAP Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AmplitudeAmplification.html">振幅放大</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">量子傅里叶变换</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">基本定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">量子线路构造</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#qft">QFT的求和形式与张量积形式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">二进制展开与量子态制备</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">代码实现</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="QPE.html">量子相位估计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QArithmetic.html">量子四则运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HHL.html">HHL算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Grover.html">Grover算法和量子计数算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Shor.html">Shor算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QITE.html">量子虚时演化算法</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyQPanda</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>量子傅里叶变换</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/OriginQ/pyQPanda-Toturial/blob/master/source/QFT.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>量子傅里叶变换<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>量子傅里叶变换（QFT）实质上是经典的逆离散傅里叶变换（IDFT）的量子版本。</p>
+<p>量子傅里叶变换可以将存在于基向量中的数据与振幅中的数据在一定条件下相互转换。</p>
+<div class="section" id="id2">
+<h2>基本定义<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>如图所示，QFT可以简单地通过对IDFT进行替换得到，QFT和DFT本质上都是同一个向量在两个等价空间中的不同表示形式，即基向量的更换。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+ y_k\rightarrow\frac{1}{\sqrt N}\Sigma_{j=0}^{N-1}x_j \
+ e^{\frac{2\pi\ i}{N}jk},\\ \left|x\right\rangle\rightarrow \
+ \frac{1}{2^\frac{n}{2}}\Sigma_{k=0}^{2^n-1}e^{\frac{2\pi i}{2^n} \
+ xk}\left|k\right\rangle.
+\end{aligned}\end{split}\]</div>
+<p>由定义可知，空间 <span class="math notranslate nohighlight">\(span\{\left|x\right\rangle\}\)</span> 中的某个向量 <span class="math notranslate nohighlight">\(\Sigma_x\alpha_x\left|x\right\rangle\)</span> 通过傅里叶变换可以表示为另一个等价空间 <span class="math notranslate nohighlight">\(span\{\left|k\right\rangle\}\)</span> 中基向量的线性组合<span class="math notranslate nohighlight">\(\Sigma_k\beta_k\left|k\right\rangle\)</span>, 且线性组合的系数 <span class="math notranslate nohighlight">\(\beta_k\)</span> 由<span class="math notranslate nohighlight">\(\left|x\right\rangle\)</span> 和 <span class="math notranslate nohighlight">\(\alpha_x\)</span> 决定。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">量子傅里叶变换/逆变换，实质上可以视为一种振幅和基向量的相互转化。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>量子线路构造<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>对QFT的量子线路实现需要对其表达式进行变形，得到可以用现有普适量子门组合实现的变换过程。</p>
+<div class="section" id="qft">
+<h3>QFT的求和形式与张量积形式<a class="headerlink" href="#qft" title="永久链接至标题">¶</a></h3>
+<p>对任给整数 <span class="math notranslate nohighlight">\(x\)</span> ，由二进制展开 <span class="math notranslate nohighlight">\(k=\Sigma_{i=1}^nk_i2^{n-i}\)</span>，对<span class="math notranslate nohighlight">\(\left|x\right\rangle\)</span> 进行量子傅里叶变换的结果可表示为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+&amp; QFT(\left|x\right\rangle)=\frac{1}{2^\frac{n}{2}}\Sigma_{k=0}^{2^n-1}e^\frac{2\pi ixk}{2^n} \
+\left|k\right\rangle=\frac{1}{2^\frac{n}{2}}\Sigma_{k_1=0}^1\cdots\Sigma_{k_n=0}^1 \
+e^{2\pi ixk\left(\Sigma_{l=1}^nk_l2^{-l}\right)}\left|k_1\cdots k_n\right\rangle \\
+&amp; =\frac{1}{2^\frac{n}{2}}\Sigma_{k_1=0}^1\cdots\Sigma_{k_n=0}^1\otimes_{l=1}^n
+e^{2\pi ix k_l2^{-l}} \left|k_l\right\rangle=\frac{1}{2^\frac{n}{2}}\otimes_{l=1}^n(\left|0\right\rangle+e^{2\pi ix2^{-l}} \
+\left|1\right\rangle).
+\end{aligned}\end{split}\]</div>
+<p>由上式可知，QFT可以将特定量子态 <span class="math notranslate nohighlight">\(\left|x\right\rangle\)</span> 表示为另一组基的线性组合，而这个线性组合还能表示为多个单比特量子态<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi ix2^{-l}}\left|1\right\rangle)\)</span> 的张量积。</p>
+<p>因此对任给整数 <span class="math notranslate nohighlight">\(x\)</span>，如果可以由二进制展开位 <span class="math notranslate nohighlight">\(\left|x_{n+1-l}\right\rangle\)</span> 快速构造量子态
+<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi ix2^{-l}}\left|1\right\rangle)\)</span>，那么就可以通过张量积形式的QFT表达式完成相应QFT量子线路的构造。</p>
+</div>
+<div class="section" id="id4">
+<h3>二进制展开与量子态制备<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>任给整数 <span class="math notranslate nohighlight">\(x\)</span> 进行二进制展开近似：</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+x/2^m \approx \left[x_1\cdots x_m\right]/2^m=\left[0.x_1\cdots x_m\right]=\Sigma_{k=1}^mx_k2^{-k},
+\end{aligned}\]</div>
+<p>而</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+2\pi ix2^{-l}=2\pi i\left[x_1\cdots x_n\right]2^{-l}=2\pi i\left[0.x_{n-l}\cdots x_n\right].
+\end{aligned}\]</div>
+<p>于是制备 <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi ix2^{-l}}\left|1\right\rangle)\)</span> 转化为制备 <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi i [0.x_{n-l}\cdots x_n]}\left|1\right\rangle)\)</span> 。</p>
+<p>注意到 <span class="math notranslate nohighlight">\(H\left|0\right\rangle = \frac{1}{\sqrt{2}}(\left|0\right\rangle + \left|1\right\rangle) = \
+\frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi i [0.x_n]}\left|1\right\rangle)\)</span> ，而</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+&amp; \frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi i [0.x_{n-1} x_n]}\left|1\right\rangle) = \
+\frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi i [0.x_{n-1}]} e^{2\pi i [0.0 x_n]}  \left|1\right\rangle),\\
+&amp; R_m \left|0\right\rangle = \left|0\right\rangle, R_m \left|1\right\rangle = e^{2\pi i \frac{1}{2^m}}\left|1\right\rangle.
+\end{aligned}\end{split}\]</div>
+<p>定义受控旋转量子门 <span class="math notranslate nohighlight">\((C-R)_{j-k+1}\)</span> 满足</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+(C-R)_{j-k+1} \frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi i [0.x_{n-j}]}
+\left|1\right\rangle)\left|x_{n-k}\right\rangle = \frac{1}{\sqrt{2}}(
+\left|0\right\rangle + e^{2\pi i [0.x_{n-j}0\cdots 0x_{n-k}]}\left|1\right\rangle.
+\end{aligned}\]</div>
+<p>于是利用量子门 <span class="math notranslate nohighlight">\(H\)</span> 和 <span class="math notranslate nohighlight">\((C-R)_{j-k+1}\)</span> 就可以完成对量子态<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi ix2^{-l}}\left|1\right\rangle)\)</span>的制备，进而完成QFT的量子线路。</p>
+<p>QFT的量子线路图如下所示</p>
+<img alt="_images/QFT.png" class="align-center" src="_images/QFT.png" />
+<p>特别地，注意到上图中初始量子态为 <span class="math notranslate nohighlight">\(\left|x_i\right\rangle\)</span> 的量子比特对应的结果量子态为<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi ix2^{n+1-l}}\left|1\right\rangle)\)</span>而非 <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\left|0\right\rangle + e^{2\pi ix2^{-l}}\left|1\right\rangle)\)</span> ，因此实际使用时还需要追加相应的多组 <span class="math notranslate nohighlight">\(SWAP\)</span> 门。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>代码实现<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>QFT在一维情况就是Hadamard量子门。
+基于QPanda-2.0的QFT接口函数如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">QFT</span><span class="p">(</span><span class="n">qlist</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>选取 <span class="math notranslate nohighlight">\(\left|x\right\rangle=\left|000\right\rangle\)</span> 验证QFT的代码实例如下</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">pyqpanda</span> <span class="k">as</span> <span class="nn">pq</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="n">machine</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">init_quantum_machine</span><span class="p">(</span><span class="n">pq</span><span class="o">.</span><span class="n">QMachineType</span><span class="o">.</span><span class="n">CPU</span><span class="p">)</span>
+    <span class="n">qvec</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">qAlloc_many</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">prog</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">create_empty_qprog</span><span class="p">()</span>
+
+    <span class="c1"># 构建量子程序</span>
+    <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">pq</span><span class="o">.</span><span class="n">QFT</span><span class="p">(</span><span class="n">qvec</span><span class="p">))</span>
+
+    <span class="c1"># 对量子程序进行概率测量</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">prob_run_dict</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">qvec</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">pq</span><span class="o">.</span><span class="n">destroy_quantum_machine</span><span class="p">(</span><span class="n">machine</span><span class="p">)</span>
+
+    <span class="c1"># 打印测量结果</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+         <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>由前文中QFT的定义及 <span class="math notranslate nohighlight">\(\left|x\right\rangle=\left|000\right\rangle\)</span> 可知输出结果应当以均匀概率 <span class="math notranslate nohighlight">\(\frac{1}{8}\)</span> 得到所有量子态，即</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">000</span><span class="p">,</span> <span class="mf">0.125</span>
+<span class="mi">001</span><span class="p">,</span> <span class="mf">0.125</span>
+<span class="mi">010</span><span class="p">,</span> <span class="mf">0.125</span>
+<span class="mi">011</span><span class="p">,</span> <span class="mf">0.125</span>
+<span class="mi">100</span><span class="p">,</span> <span class="mf">0.125</span>
+<span class="mi">101</span><span class="p">,</span> <span class="mf">0.125</span>
+<span class="mi">110</span><span class="p">,</span> <span class="mf">0.125</span>
+<span class="mi">111</span><span class="p">,</span> <span class="mf">0.125</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="QPE.html" class="btn btn-neutral float-right" title="量子相位估计" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="AmplitudeAmplification.html" class="btn btn-neutral float-left" title="振幅放大" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, OriginQC
+      
+        <span class="commit">
+          Revision <code>352347c2</code>.
+        </span>
+      
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="/zh/latest/">latest</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="//pyqpanda-toturial.readthedocs.io/_/downloads/zh/latest/htmlzip/">html</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="//readthedocs.org/projects/pyqpanda-toturial/?fromdocs=pyqpanda-toturial">Project Home</a>
+          </dd>
+          <dd>
+            <a href="//readthedocs.org/builds/pyqpanda-toturial/?fromdocs=pyqpanda-toturial">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+   
+
+</body>
+</html>
